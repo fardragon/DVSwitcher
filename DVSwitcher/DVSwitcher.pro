@@ -23,12 +23,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 
+LIBS += -lPsapi
+
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    app.cpp \
+    focushook.cpp \
+    app_list.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    app.h \
+    focushook.h \
+    app_list.h
 
 FORMS += \
         mainwindow.ui
+
