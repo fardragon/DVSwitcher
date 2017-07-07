@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -22,7 +22,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-
 LIBS += -lPsapi
 
 SOURCES += \
@@ -30,14 +29,20 @@ SOURCES += \
         mainwindow.cpp \
     app.cpp \
     focushook.cpp \
-    app_list.cpp
+    app_list.cpp \
+    single_instance_guard.cpp \
+    settings_controller.cpp
 
 HEADERS += \
         mainwindow.h \
     app.h \
     focushook.h \
-    app_list.h
+    app_list.h \
+    single_instance_guard.h \
+    settings_controller.h
 
 FORMS += \
         mainwindow.ui
+
+RESOURCES = dvsresources.qrc
 

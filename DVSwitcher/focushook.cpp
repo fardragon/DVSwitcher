@@ -2,8 +2,7 @@
 
 FocusHook::FocusHook(QObject *parent) : QObject(parent), m_hook(nullptr)
 {
-	m_hook = SetWinEventHook(EVENT_OBJECT_FOCUS,EVENT_OBJECT_FOCUS,NULL,FocusHook::EventProc,0,0,WINEVENT_OUTOFCONTEXT);
-
+	this->hook();
 }
 
 FocusHook &FocusHook::getInstance()
@@ -17,12 +16,41 @@ void FocusHook::emit_foreground_changed(QString new_foreground)
 	emit foreground_changed(new_foreground);
 }
 
-FocusHook::~FocusHook()
+void FocusHook::hook()
+{
+	m_hook = SetWinEventHook(EVENT_OBJECT_FOCUS,EVENT_OBJECT_FOCUS,NULL,FocusHook::EventProc,0,0,WINEVENT_OUTOFCONTEXT);
+}
+
+void FocusHook::unhook()
 {
 	UnhookWinEvent(m_hook);
 }
 
+void FocusHook::toggle_active(bool inactive)
+{
+	if (!inactive)
+	{
+		this->hook();
+		this->emit_exec(GetActiveWindow());
+	}
+	else
+	{
+		this->unhook();
+		emit foreground_changed("Disabled");
+	}
+}
+
+FocusHook::~FocusHook()
+{
+	this->unhook();
+}
+
 void FocusHook::EventProc(HWINEVENTHOOK /* unused */, DWORD  /* unused */, HWND hwnd, LONG  /* unused */, LONG  /* unused */, DWORD  /* unused */, DWORD  /* unused */ )
+{
+	FocusHook::getInstance().emit_exec(hwnd);
+}
+
+void FocusHook::emit_exec(HWND hwnd)
 {
 	int size = 100;
 	int length = 0;

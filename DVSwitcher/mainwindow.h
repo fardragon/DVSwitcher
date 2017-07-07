@@ -4,10 +4,21 @@
 #include <QMainWindow>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <shlwapi.h>
+#include <QCloseEvent>
+#include <QSystemTrayIcon>
+#include <QMenu>
+
+#include <windows.h>
+
+#include <QDebug>
+
+
+
 
 #include "app_list.h"
 #include "focushook.h"
+#include "settings_controller.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -24,12 +35,13 @@ public:
 private:
 	void load_apps();
 	void unload_apps();
-
+	void init_tray();
 
 
     Ui::MainWindow *ui;
 	App_List m_apps_list;
-	FocusHook &m_hook_observer;
+	QSystemTrayIcon m_tray;
+	Settings_Controller m_settings;
 
 private slots:
 
@@ -40,6 +52,11 @@ private slots:
 	void on_add_Button_clicked();
 	void on_def_vibrance_Slider_valueChanged(int value);
 	void foreground_change(QString new_foreground_process);
+	void closeEvent(QCloseEvent *event);
+	void changeEvent(QEvent *event);
+	void systemTray(QSystemTrayIcon::ActivationReason reason);
+	void bring_forward();
+
 
 signals:
 

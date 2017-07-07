@@ -20,12 +20,16 @@ private:
 	HWINEVENTHOOK m_hook;
 
 	static void CALLBACK EventProc(HWINEVENTHOOK /* unused */, DWORD  /* unused */, HWND hwnd, LONG  /* unused */, LONG  /* unused */, DWORD  /* unused */, DWORD  /* unused */ );
+	void emit_exec(HWND hwnd);
 	void emit_foreground_changed(QString new_foreground);
+	void hook();
+	void unhook();
 
 signals:
 	void foreground_changed(QString new_foreground);
 
 public slots:
+	void toggle_active(bool inactive);
 };
 
 #endif // FOCUSHOOK_H

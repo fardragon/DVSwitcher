@@ -248,6 +248,57 @@
      <string>Current executable:</string>
     </property>
    </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>70</y>
+      <width>120</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QCheckBox" name="autostart_checkBox">
+       <property name="text">
+        <string>Start with Windows</string>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="tristate">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="start_min_checkBox">
+       <property name="text">
+        <string>Start minimized</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="disable_Checkbox">
+       <property name="text">
+        <string>Disable switcher</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <zorder>layoutWidget</zorder>
+   <zorder>apps_listWidget</zorder>
+   <zorder>vibrance_text</zorder>
+   <zorder>def_vibrance_Slider</zorder>
+   <zorder>def_vibrance_text</zorder>
+   <zorder>def_vibrance_level</zorder>
+   <zorder>vibrance_Slider</zorder>
+   <zorder>active_checkBox</zorder>
+   <zorder>vibrance_label</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>executable_label</zorder>
+   <zorder>executable_text</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

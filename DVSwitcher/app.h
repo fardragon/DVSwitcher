@@ -7,13 +7,14 @@
 class app
 {
 public:
-	app(const QString& filepath, int vibrance_level = 50, bool active = true);
-
+	app(const QString& filepath, int vibrance_level, bool active);
 	QString name() const;
 	QString filepath() const;
-	std::pair<int,bool> settings();
+	std::pair<int,bool> settings() const;
 	void set_active(bool active);
 	void set_vibrance_level(int vibrance_level);
+	bool active() const;
+	int vibrance_level() const;
 
 private:
 	QString m_name;
